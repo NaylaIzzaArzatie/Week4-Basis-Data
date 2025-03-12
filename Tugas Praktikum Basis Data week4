@@ -1,0 +1,159 @@
+Microsoft Windows [Version 10.0.22631.4890]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\LENOVO>CD C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 43
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE MAHASISWA;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [(none)]> USE MAHASISWA;
+Database changed
+MariaDB [MAHASISWA]> CREATE TABLE NILAI_MAHASISWA (
+    -> ID_mahasiswa INT PRIMARY KEY auto_increment,
+    -> Nama VARCHAR(40) NOT NULL,
+    -> Jenis_Kelamin ENUM('L','P') NOT NULL,
+    -> Jurusan VARCHAR(30) NOT NULL,
+    -> Mata_Kuliah VARCHAR(50) NOT NULL,
+    -> Nilai FLOAT(5) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.020 sec)
+
+MariaDB [MAHASISWA]> DESC NILAI_MAHASISWA;
++---------------+---------------+------+-----+---------+----------------+
+| Field         | Type          | Null | Key | Default | Extra          |
++---------------+---------------+------+-----+---------+----------------+
+| ID_mahasiswa  | int(11)       | NO   | PRI | NULL    | auto_increment |
+| Nama          | varchar(40)   | NO   |     | NULL    |                |
+| Jenis_Kelamin | enum('L','P') | NO   |     | NULL    |                |
+| Jurusan       | varchar(30)   | NO   |     | NULL    |                |
+| Mata_Kuliah   | varchar(50)   | NO   |     | NULL    |                |
+| Nilai         | float         | NO   |     | NULL    |                |
++---------------+---------------+------+-----+---------+----------------+
+6 rows in set (0.030 sec)
+
+MariaDB [MAHASISWA]> INSERT INTO nilai_mahasiswa (Nama, Jenis_Kelamin, Jurusan, Mata_Kuliah, Nilai) VALUES
+    -> ('Nayla', 'P', 'Teknologi Informasi', 'Basis Data', 99.90),
+    -> ('Ahmad', 'L', 'Teknologi Informasi', 'Basis Data', 97.40),
+    -> ('Nayla', 'P', 'Teknologi Informasi', 'Struktur Data', 87.80),
+    -> ('Ahmad', 'L', 'Teknologi Informasi', 'Struktur Data', 90.00),
+    -> ('Dimas', 'L', 'Teknik Mesin', 'Gambar Mesin', 94.00),
+    -> ('Wangsa', 'L', 'Teknik Mesin', 'Gambar Mesin', 99.70),
+    -> ('Arza', 'P', 'Teknik Mesin', 'Gambar Mesin', 85.00),
+    -> ('Dimas', 'L', 'Teknik Mesin', 'Bahan Teknik', 97.40),
+    -> ('Wangsa', 'L', 'Teknik Mesin', 'Bahan Teknik', 89.90),
+    -> ('Arza', 'P', 'Teknik Mesin', 'Bahan Teknik', 91.20),
+    -> ('Dhori', 'L', 'Teknik Mekatronika', 'Material Teknik', 92.00),
+    -> ('Izza', 'P', 'Teknik Mekatronika', 'Material Teknik', 94.70),
+    -> ('Dhori', 'L', 'Teknik Mekatronika', 'Rangkaian Elektronika', 91.40),
+    -> ('Izza', 'P', 'Teknik Mekatronika', 'Rangkaian Elektronika', 89.70),
+    -> ('Brilliant', 'L', 'Teknik Elektro', 'Rangkaian Listrik',  74.70),
+    -> ('Alvita', 'P', 'Teknik Elektro', 'Rangkaian Listrik', 83.00),
+    -> ('Rabbani', 'L', 'Teknik Elektro', 'Rangkaian Listrik', 89.70),
+    -> ('Brilliant', 'L', 'Teknik Elektro', 'Teknik Digital', 95.90),
+    -> ('Alvita', 'P', 'Teknik Elektro', 'Teknik Digital', 94.10),
+    -> ('Rabbani', 'L', 'Teknik Elektro', 'Teknik Digital', 94.00);
+Query OK, 20 rows affected (0.012 sec)
+Records: 20  Duplicates: 0  Warnings: 0
+
+MariaDB [MAHASISWA]> SELECT * FROM NILAI_MAHASISWA;
++--------------+-----------+---------------+---------------------+-----------------------+-------+
+| ID_mahasiswa | Nama      | Jenis_Kelamin | Jurusan             | Mata_Kuliah           | Nilai |
++--------------+-----------+---------------+---------------------+-----------------------+-------+
+|            1 | Nayla     | P             | Teknologi Informasi | Basis Data            |  99.9 |
+|            2 | Ahmad     | L             | Teknologi Informasi | Basis Data            |  97.4 |
+|            3 | Nayla     | P             | Teknologi Informasi | Struktur Data         |  87.8 |
+|            4 | Ahmad     | L             | Teknologi Informasi | Struktur Data         |    90 |
+|            5 | Dimas     | L             | Teknik Mesin        | Gambar Mesin          |    94 |
+|            6 | Wangsa    | L             | Teknik Mesin        | Gambar Mesin          |  99.7 |
+|            7 | Arza      | P             | Teknik Mesin        | Gambar Mesin          |    85 |
+|            8 | Dimas     | L             | Teknik Mesin        | Bahan Teknik          |  97.4 |
+|            9 | Wangsa    | L             | Teknik Mesin        | Bahan Teknik          |  89.9 |
+|           10 | Arza      | P             | Teknik Mesin        | Bahan Teknik          |  91.2 |
+|           11 | Dhori     | L             | Teknik Mekatronika  | Material Teknik       |    92 |
+|           12 | Izza      | P             | Teknik Mekatronika  | Material Teknik       |  94.7 |
+|           13 | Dhori     | L             | Teknik Mekatronika  | Rangkaian Elektronika |  91.4 |
+|           14 | Izza      | P             | Teknik Mekatronika  | Rangkaian Elektronika |  89.7 |
+|           15 | Brilliant | L             | Teknik Elektro      | Rangkaian Listrik     |  74.7 |
+|           16 | Alvita    | P             | Teknik Elektro      | Rangkaian Listrik     |    83 |
+|           17 | Rabbani   | L             | Teknik Elektro      | Rangkaian Listrik     |  89.7 |
+|           18 | Brilliant | L             | Teknik Elektro      | Teknik Digital        |  95.9 |
+|           19 | Alvita    | P             | Teknik Elektro      | Teknik Digital        |  94.1 |
+|           20 | Rabbani   | L             | Teknik Elektro      | Teknik Digital        |    94 |
++--------------+-----------+---------------+---------------------+-----------------------+-------+
+20 rows in set (0.001 sec)
+
+MariaDB [MAHASISWA]> SELECT Jurusan, COUNT(*) AS Jumlah_Mahasiswa FROM nilai_mahasiswa
+    -> GROUP BY Jurusan;
++---------------------+------------------+
+| Jurusan             | Jumlah_Mahasiswa |
++---------------------+------------------+
+| Teknik Elektro      |                6 |
+| Teknik Mekatronika  |                4 |
+| Teknik Mesin        |                6 |
+| Teknologi Informasi |                4 |
++---------------------+------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [MAHASISWA]> SELECT Mata_Kuliah, Nama, MAX(Nilai) AS Nilai_Tertinggi FROM nilai_mahasiswa
+    -> GROUP BY Mata_Kuliah;
++-----------------------+-----------+-----------------+
+| Mata_Kuliah           | Nama      | Nilai_Tertinggi |
++-----------------------+-----------+-----------------+
+| Bahan Teknik          | Dimas     |            97.4 |
+| Basis Data            | Nayla     |            99.9 |
+| Gambar Mesin          | Dimas     |            99.7 |
+| Material Teknik       | Dhori     |            94.7 |
+| Rangkaian Elektronika | Dhori     |            91.4 |
+| Rangkaian Listrik     | Brilliant |            89.7 |
+| Struktur Data         | Nayla     |              90 |
+| Teknik Digital        | Brilliant |            95.9 |
++-----------------------+-----------+-----------------+
+8 rows in set (0.001 sec)
+
+MariaDB [MAHASISWA]> SELECT Mata_Kuliah, Nama, MAX(Nilai) AS Nilai_Tertinggi FROM nilai_mahasiswa
+    -> GROUP BY Mata_Kuliah;
++-----------------------+-----------+-----------------+
+| Mata_Kuliah           | Nama      | Nilai_Tertinggi |
++-----------------------+-----------+-----------------+
+| Bahan Teknik          | Dimas     |            97.4 |
+| Basis Data            | Nayla     |            99.9 |
+| Gambar Mesin          | Dimas     |            99.7 |
+| Material Teknik       | Dhori     |            94.7 |
+| Rangkaian Elektronika | Dhori     |            91.4 |
+| Rangkaian Listrik     | Brilliant |            89.7 |
+| Struktur Data         | Nayla     |              90 |
+| Teknik Digital        | Brilliant |            95.9 |
++-----------------------+-----------+-----------------+
+8 rows in set (0.001 sec)
+
+MariaDB [MAHASISWA]> SELECT Nama, COUNT(Mata_Kuliah) AS Jumlah_Mata_Kuliah
+    -> FROM nilai_mahasiswa
+    -> GROUP BY Nama;
++-----------+--------------------+
+| Nama      | Jumlah_Mata_Kuliah |
++-----------+--------------------+
+| Ahmad     |                  2 |
+| Alvita    |                  2 |
+| Arza      |                  2 |
+| Brilliant |                  2 |
+| Dhori     |                  2 |
+| Dimas     |                  2 |
+| Izza      |                  2 |
+| Nayla     |                  2 |
+| Rabbani   |                  2 |
+| Wangsa    |                  2 |
++-----------+--------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [MAHASISWA]> exit
+Bye
